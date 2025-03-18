@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_project/acarabkpm/acara16_img.dart';
 // import 'package:flutter_project/acarabkpm/acara20_drawerwidget.dart';
-import 'package:flutter_project/acarabkpm/acara21_gradient.dart';
+// import 'package:flutter_project/acarabkpm/acara21_gradient.dart';
+import 'package:flutter_project/acarabkpm/acara22_pageview.dart';
 // import 'package:flutter_project/acarabkpm/acara18_navigation.dart';
 import 'acarabkpm/acara19_errorpage.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/':
-            return MaterialPageRoute(builder: (_) => const acara21());
+            return MaterialPageRoute(builder: (_) => const acara22());
           case '/error':
             return MaterialPageRoute(builder: (_) => const Acara19ErrorPage());
           default:
