@@ -3,8 +3,8 @@ import 'acara19_errorpage.dart';
 
 
 // Halaman Login
-class acara26 extends StatelessWidget {
-  const acara26({super.key});
+class acara25 extends StatelessWidget {
+  const acara25({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -268,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const acara26()),
+                  MaterialPageRoute(builder: (context) => const acara25()),
                 );
               },
             ),
@@ -306,11 +306,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 )
-              : _selectedIndex == 2
-                ? const GradientPage(title: "👤 Ini Halaman Akun")
-                : _selectedIndex == 3 
-                  ? const SettingsPage()
-                  : const GradientPage(title: "🏠 Halaman Default"),
+              : _selectedIndex == 3
+                  ? const GradientPage(title: "⚙️ Pengaturan")
+                  : const GradientPage(title: "👤 Ini Halaman Akun"),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
@@ -339,7 +337,7 @@ class GradientPage extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color.fromARGB(255, 165, 0, 0), Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 117, 115, 255)],
+          colors: [Color.fromARGB(255, 88, 172, 240), Color.fromARGB(255, 214, 76, 238), Color.fromARGB(255, 233, 136, 129)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -347,69 +345,7 @@ class GradientPage extends StatelessWidget {
       child: Center(
         child: Text(
           title,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 0, 0, 0)),
-        ),
-      ),
-    );
-  }
-}
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
-
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
-  bool isDarkMode = false;
-  bool isChecked = false;
-  double sliderValue = 50;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pengaturan"),
-        backgroundColor: Colors.redAccent,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SwitchListTile(
-              title: const Text("Mode Gelap"),
-              value: isDarkMode,
-              onChanged: (bool value) {
-                setState(() {
-                  isDarkMode = value;
-                });
-              },
-            ),
-            CheckboxListTile(
-              title: const Text("Aktifkan Notifikasi"),
-              value: isChecked,
-              onChanged: (bool? value) {
-                setState(() {
-                  isChecked = value!;
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-            const Text("Ukuran Teks"),
-            Slider(
-              value: sliderValue,
-              min: 10,
-              max: 100,
-              divisions: 9,
-              label: sliderValue.round().toString(),
-              onChanged: (double value) {
-                setState(() {
-                  sliderValue = value;
-                });
-              },
-            ),
-          ],
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );
