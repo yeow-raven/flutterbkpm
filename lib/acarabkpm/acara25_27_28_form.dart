@@ -306,9 +306,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 )
-              : _selectedIndex == 3
-                  ? const GradientPage(title: "⚙️ Pengaturan")
-                  : const GradientPage(title: "👤 Ini Halaman Akun"),
+              : _selectedIndex == 2
+                ? const GradientPage(title: "👤 Ini Halaman Akun")
+                : _selectedIndex == 3 
+                  ? const SettingsPage()
+                  : const GradientPage(title: "🏠 Halaman Default"),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
@@ -346,6 +348,68 @@ class GradientPage extends StatelessWidget {
         child: Text(
           title,
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
+    );
+  }
+}
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool isDarkMode = false;
+  bool isChecked = false;
+  double sliderValue = 50;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Pengaturan"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SwitchListTile(
+              title: const Text("Mode Gelap"),
+              value: isDarkMode,
+              onChanged: (bool value) {
+                setState(() {
+                  isDarkMode = value;
+                });
+              },
+            ),
+            CheckboxListTile(
+              title: const Text("Aktifkan Notifikasi"),
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = value!;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            const Text("Ukuran Teks"),
+            Slider(
+              value: sliderValue,
+              min: 10,
+              max: 100,
+              divisions: 9,
+              label: sliderValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  sliderValue = value;
+                });
+              },
+            ),
+          ],
         ),
       ),
     );

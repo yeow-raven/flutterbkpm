@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/':
-            return MaterialPageRoute(builder: (_) => const acara26());
+            return MaterialPageRoute(builder: (_) => const acara25());
           case '/error':
             return MaterialPageRoute(builder: (_) => const Acara19ErrorPage());
           default:
