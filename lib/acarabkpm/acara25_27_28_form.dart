@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'acara19_errorpage.dart';
+import 'package:flutter/services.dart';
 
 
 // Halaman Login
@@ -135,6 +136,8 @@ class RegisterPage extends StatelessWidget {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
+
+            // Input Nama Lengkap
             TextFormField(
               decoration: InputDecoration(
                 hintText: "Nama Lengkap",
@@ -144,15 +147,53 @@ class RegisterPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
+
+            // Input Email dengan validasi
             TextFormField(
+              keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 hintText: "Email",
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 filled: true,
                 fillColor: Colors.white,
+                prefixIcon: Icon(Icons.email), // Ikon email
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Masukkan email";
+                } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                  return "Masukkan email yang valid";
+                }
+                return null;
+              },
             ),
             const SizedBox(height: 10),
+
+            // Input Nomor Telepon
+            TextFormField(
+              keyboardType: TextInputType.phone,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              decoration: InputDecoration(
+                hintText: "Nomor Telepon",
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: Icon(Icons.phone), // Ikon telepon
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Masukkan nomor telepon";
+                } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                  return "Hanya boleh angka";
+                } else if (value.length < 10 || value.length > 13) {
+                  return "Nomor telepon harus 10-13 digit";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 10),
+
+            // Input Password
             TextFormField(
               obscureText: true,
               decoration: InputDecoration(
@@ -160,6 +201,7 @@ class RegisterPage extends StatelessWidget {
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 filled: true,
                 fillColor: Colors.white,
+                prefixIcon: Icon(Icons.lock), // Ikon password
               ),
             ),
             const SizedBox(height: 20),
